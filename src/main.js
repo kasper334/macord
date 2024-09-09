@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, nativeImage } = require('electron');
+const { app, BrowserWindow, Tray, Menu, nativeImage, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const md5 = require('md5');
 const discordIcon = require('../assets/discord-icon');
@@ -22,6 +22,11 @@ const createMainWindow = () => {
 
     mainWindow.loadURL('https://discord.com/login')
         .then(() => {
+            mainWindow.webContents.setWindowOpenHandler(({ url }) => {
+                shell.openExternal(url).then();
+                return { action: 'deny' };
+            });
+
             setInterval(() => {
                 mainWindow.webContents.executeJavaScript(`document.querySelector('head link[rel="icon"]').href`)
                     .then((base64Img) => {
