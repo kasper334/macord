@@ -58,7 +58,7 @@ app.whenReady().then(() => {
     tray = new Tray(initialTrayIcon.resize(settings.trayIconResizeOptions));
 
     if (process.platform === 'darwin') {
-        app.dock.setIcon(nativeImage.createFromPath('./assets/discord-white.png'));
+        app.dock.setIcon(nativeImage.createFromPath('./assets/app.icns'));
     }
 
     const mainWindow = createMainWindow();
