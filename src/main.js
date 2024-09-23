@@ -1,7 +1,6 @@
 const { app, BrowserWindow, Tray, Menu, nativeImage, shell } = require('electron');
 const windowStateKeeper = require('electron-window-state');
 const md5 = require('md5');
-const discordIcon = require('../assets/discord-icon');
 const settings = require('./settings');
 const logger = require('./logger');
 
@@ -53,12 +52,12 @@ const createMainWindow = () => {
 }
 
 app.whenReady().then(() => {
-    const initialTrayIcon = nativeImage.createFromDataURL(discordIcon);
+    const appIcon = nativeImage.createFromPath('./assets/app.icns');
 
-    tray = new Tray(initialTrayIcon.resize(settings.trayIconResizeOptions));
+    tray = new Tray(appIcon.resize(settings.trayIconResizeOptions));
 
     if (process.platform === 'darwin') {
-        app.dock.setIcon(nativeImage.createFromPath('./assets/app.icns'));
+        app.dock.setIcon(appIcon);
     }
 
     const mainWindow = createMainWindow();
