@@ -1,6 +1,7 @@
 {
   "name": "macord",
-  "version": "0.0.3",
+  "productName": "Macord",
+  "version": "0.0.4",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
